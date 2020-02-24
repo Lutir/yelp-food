@@ -11,5 +11,8 @@
 |
 */
 
-Route::get('/', 'MainController@makeRequest');
+// Route::get('/', 'MainController@makeRequest');
+Route::get('/', function() {
+    return view('welcome');
+ });
 

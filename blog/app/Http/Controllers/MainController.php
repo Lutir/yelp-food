@@ -17,7 +17,7 @@ class MainController extends Controller
         ]);
         $body = $res->getBody();
 
-        dd(json_decode($body->getContents()));
+        // dd(json_decode($body->getContents()));
 
     }
 }
