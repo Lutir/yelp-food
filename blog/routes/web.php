@@ -11,7 +11,7 @@
 |
 */
 
-// Route::get('/', 'MainController@makeRequest');
+Route::post('/autocomplete', 'MainController@makeRequest');
 Route::get('/', function() {
     return view('welcome');
  });

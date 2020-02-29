@@ -1,99 +1,292 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+   <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta id="token" name="csrf-token" content="{{ csrf_token() }}">
+      <title>Food Dojo</title>
+      <!-- Fonts -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.3.2/css/uikit.min.css" integrity="sha256-p54YJgZLIbKdD9CCokvwnGmZR3aQUvJhrbLibudN9sk=" crossorigin="anonymous" />
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/fontawesome.min.css" integrity="sha256-mM6GZq066j2vkC2ojeFbLCcjVzpsrzyMVUnRnEQ5lGw=" crossorigin="anonymous" />
+      <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,900&display=swap" rel="stylesheet">
+      <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkfy1qoNObvO4CHbSL-7748kTJ95Kv2yc&libraries=places"></script>
 
-        <title>Laravel</title>
+      <!-- Styles -->
+      <style>
+         .red
+         {
+         color: rgba(224, 64, 56, 1);
+         }
+         .cadet
+         {
+         color: rgba(44, 44, 84, 1);
+         }
+         .plat
+         {
+         color: rgba(232, 232, 232, 1);
+         }
+         .peach
+         {
+         color: rgba(245, 214, 186, 1);
+         }
+         .sandy
+         {
+         color: rgba(244, 157, 110, 1);
+         }
+         html, body {
+         background-color:  rgba(224, 64, 56, 1);
+         color: #636b6f;
+         font-family: 'Source Sans Pro';
+         font-weight: 200;
+         margin: 0;
+         }
+         h1, h2, .modal-content{
+         font-family: 'Source Sans Pro';
+         font-weight: 900;
+         font-size: 72px;
+         color: #fff;
+         }
+         .modal-content{
+         font-size: 48px;
+         }
+         .main{
+         margin-top: 15%;
+         margin-left: 10%;
+         }
+         .main-content{
+         font-family: 'Source Sans Pro';
+         color: white;
+         font-weight: 400;
+         font-size: 40px;
+         padding-bottom: 25px;
+         }
+         .main-button, .search-button{
+         border: 5px solid white;
+         color: #fff;
+         font-size: 20px;
+         }
+         .main-button:hover, .search-button:hover{
+         background: #fff;
+         color: rgba(224, 64, 56, 1);
+         border: 5px solid white;
+         }
+         .search-button:hover{
+         color: rgba(44, 44, 84, 1);
+         }
+         #modal-search, .uk-modal-dialog, .uk-modal-close-full {
+         background: rgba(44, 44, 84, 1) !important;
+         }
+         .modal-body{
+         padding-top:100px;
+         }
+         .item-search, .place-search{
+         padding-bottom: 25px;
+         padding-left: 20px;
+         }
+         .suggestions-items{
+         list-style-type: none;
+         padding: 0px 10px;
+         font-size: 24px;
+         color: #F49D6E;
+         position: absolute;
+         z-index: 100;
+         left: 45%;
+         background: #fff;
+         width: 75%;
+         }
+         .suggestion{
+         padding: 5px 10px;
+         }
+         .suggestion:hover{
+         cursor: pointer;
+         font-weight: bold;
+         }
+         .search-module{
+         padding: 20px 0px 40px 0px;
+         }
+         .popular-item{
+         display: inline-block;
+         margin: 20px;
+         }
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+         .popular-item p{
+             text-align: center;
+             font-size: 24px;
+             color: #fff;
+         }
+      </style>
+   </head>
+   <body >
+      <div class="uk-container main" >
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Capital One
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
+         <h1>
+            Welcome to Food Dojo!
+         </h1>
+         <p class="main-content">
+            We help you find the best <span id="app"></span> in town!
+         </p>
+         <a href="#modal-search" uk-toggle class="uk-button uk-button-default uk-button-large main-button">
+         Lets get started
+         </a>
+      </div>
+      <div id="modal-search" class="uk-modal-full uk-modal" uk-modal>
+         <div class="uk-modal-dialog uk-flex uk-flex-center" uk-height-viewport>
+            <button class="uk-modal-close-full" type="button" uk-close></button>
+            <div class="uk-container modal-body">
+               <div class="item-module">
+                  <span class="modal-content">I am looking for</span>
+                  <form class="uk-search uk-search-large">
+                     <input class="uk-search-input item-search" type="search" placeholder="burgers, pizzas, skydiving..." >
+                  </form>
+                  <ul class="suggestions-items">
+                  </ul>
+               </div>
+               <div class="place-module">
+                  <span class="modal-content">Near</span>
+                  <form class="uk-search uk-search-large">
+                     <input id="autocomplete" class="uk-search-input place-search" type="text" placeholder="richardson, plano, frisco.." >
+                  </form>
+               </div>
+               <div class="search-module">
+                  <button class="uk-button uk-button-default uk-button-large search-button">
+                  <span uk-icon="search"></span>
+                  find places
+                  </button>
+               </div>
+               <hr>
+               <div class="popular-module">
+                  <p class="modal-content">
+                     Popular options near you
+                  </p>
+                  <div class="uk-container">
+                     <div class="popular-item">
+                        <img class="uk-border-circle" src="https://image.freepik.com/free-vector/hamburger_53876-25481.jpg" width="150" height="150" alt="Border circle">
+                        <p>Burgers</p>
+                     </div>
+                     <div class="popular-item">
+                        <img class="uk-border-circle" src="https://image.freepik.com/free-vector/three-taco-vectors_23-2147695634.jpg?1" width="150" height="150" alt="Border circle">
+                        <p>Tacos</p>
+                     </div>
+                     <div class="popular-item">
+                        <img class="uk-border-circle" src="https://image.freepik.com/free-vector/colorful-round-tasty-pizza_1284-10219.jpg" width="150" height="150" alt="Border circle">
+                        <p>Pizzas</p>
+                     </div>
+                     <div class="popular-item">
+                        <img class="uk-border-circle" src="https://image.freepik.com/free-vector/donut_53876-25491.jpg" width="150" height="150" alt="Border circle">
+                        <p>Donuts</p>
+                     </div>
+                     <div class="popular-item">
+                        <img class="uk-border-circle" src="https://image.freepik.com/free-vector/breakfast-realistic-pancakes-top-view-image_1284-14472.jpg" width="150" height="150" alt="Border circle">
+                        <p>Pancakes</p>
+                     </div>
+                  </div>
+                  <div class="uk-container">
+                     <div class="popular-item">
+                        <img class="uk-border-circle" src="https://image.freepik.com/free-vector/noodle-bowl-asia-food_52422-141.jpg" width="150" height="150" alt="Border circle">
+                        <p>Ramen</p>
+                     </div>
+                     <div class="popular-item">
+                        <img class="uk-border-circle" src="https://image.freepik.com/free-vector/fries_53876-25480.jpg" width="150" height="150" alt="Border circle">
+                        <p>Fries</p>
+                     </div>
+                     <div class="popular-item">
+                        <img class="uk-border-circle" src="https://image.freepik.com/free-vector/hot-dog-set_98292-429.jpg" width="150" height="150" alt="Border circle">
+                        <p>Hotdogs</p>
+                     </div>
+                     <div class="popular-item">
+                        <img class="uk-border-circle" src="https://image.freepik.com/free-photo/indian-healthy-cuisine-chana-masala-served-with-tandoori-roti_55610-3169.jpg" width="150" height="150" alt="Border circle">
+                        <p>Chole Bhature</p>
+                     </div>
+                     <div class="popular-item">
+                        <img class="uk-border-circle" src="https://image.freepik.com/free-vector/salami-sandwich-ingredients_98292-3568.jpg" width="150" height="150" alt="Border circle">
+                        <p>Sandwitches</p>
+                     </div>
+                  </div>
+               </div>
             </div>
-        </div>
-    </body>
+         </div>
+      </div>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.3.2/js/uikit-core.min.js" integrity="sha256-pokDnmeZPcUG8ixsBFK9UJTBZUljxfe6c/wKfL9TlMI=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.3.2/js/uikit-icons.min.js" integrity="sha256-y6lYHosw5EeTk2I2TwmbjQSrnLum1OhYpqUXjBIGdKw=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/TypewriterJS/1.0.0/typewriter.min.js" integrity="sha256-0GG30XmRuHKTD54lbTLEd01reloWjlnefU09UzmFpzc=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/fontawesome.min.js" integrity="sha256-7zqZLiBDNbfN3W/5aEI1OX/5uvck9V0yhwKOA9Oe49M=" crossorigin="anonymous"></script>
+      <script>
+        $(document).ready(function(){
+            
+        var app = document.getElementById('app');
+         
+         var typewriter = new Typewriter(app, {
+             loop: true
+         });
+         
+         let items = [
+             "Pizzas", "Pastas", "Tacos", "Burritos", "Pav Bhaji", "Burgers", "Experiences"
+         ];
+         
+         items.map((x)=>{
+             typewriter.typeString(x).pauseFor(1000).deleteAll();
+         });
+         typewriter.start();
+         
+         
+         $('.item-search').keydown(function(){
+             if(($(this).val()).length > 2){
+                 console.log($(this).val());
+             $.ajaxSetup(
+             {
+                 headers:
+                 {
+                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                 }
+             });
+         
+             $.ajax(
+             {
+                 type: "POST",
+                 url: '/autocomplete',
+                 data: {
+                     'text' : $(this).val()
+                 },
+                 dataType: "json",
+                 success: function(data){
+                     $('.suggestions-items').empty();
+                     console.log(data.categories);
+                     if(data.categories){
+                         (data.categories).map((categ)=>{
+                             $('.suggestions-items').append('<li class="suggestion">'+categ.title+'</li>');
+                         })
+                     }
+                     if(data.terms){
+                         (data.terms).map((categ)=>{
+                           $('.suggestions-items').append('<li class="suggestion">'+categ.text+'</li>');
+                         })
+                     }
+                     
+                 },
+                 error: function(jqXHR,testStatus,errorThrown){
+                     console.log(errorThrown);
+                 }
+             });
+             }
+         });
+         $(document).on('click', '.suggestion', function(){
+             console.log($(this).parent());
+             $(this).parent().empty();
+             $('.item-search').val($(this).text());
+         });
+         
+
+        var input = document.getElementById('autocomplete');
+        var autocomplete = new google.maps.places.Autocomplete(input,{types: ['(cities)']});
+        console.log(autocomplete);
+        google.maps.event.addListener(autocomplete, 'place_changed', function(){
+            var place = autocomplete.getPlace();
+            console.log(autocomplete);
+        })
+
+        })
+         
+      </script>
+   </body>
 </html>
