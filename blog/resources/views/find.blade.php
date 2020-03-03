@@ -102,6 +102,7 @@
 
          #map {
             height: 500px;
+            margin-bottom: 10%;
         }
       </style>
    </head>
@@ -123,18 +124,18 @@
     <div class="uk-navbar-center">
 
         <ul class="uk-navbar-nav">
-            <li >
+            <li class="best-match-sort">
                 <span class="sort-label">
                     Best Match
                 </span>
             </li>
-            <li>
+            <li class="distance-sort">
                 <span class="sort-label">
                     Distance
                 </span>
                 
             </li>
-            <li>
+            <li class="rating-sort">
                 <span class="sort-label">
                     Ratings
                 </span>
@@ -210,8 +211,11 @@
             </div>
         @endforeach
     </div>
-
-          <div id="map"></div>
+        <hr>
+        <h1>
+            Still confused, Check out the map view to find your outlet!
+        </h1>
+        <div id="map"></div>
 
 
     </div>
@@ -220,17 +224,20 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.3.2/js/uikit-core.min.js" integrity="sha256-pokDnmeZPcUG8ixsBFK9UJTBZUljxfe6c/wKfL9TlMI=" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.3.2/js/uikit-icons.min.js" integrity="sha256-y6lYHosw5EeTk2I2TwmbjQSrnLum1OhYpqUXjBIGdKw=" crossorigin="anonymous"></script>
-      {{-- <script async defer
+      <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkfy1qoNObvO4CHbSL-7748kTJ95Kv2yc&callback=initMap">
-        </script> --}}
+        </script>
       <script>
         $(document).ready(function(){
 
             let jobs = {!! json_encode($query) !!};
             console.log(jobs);
             
+            $('.best-match-sort').click(function(){
+                
+            })
         })
-         function initMap() {
+        function initMap() {
                 let query = {!! json_encode($query) !!}
 
                 let data = {!! json_encode($data) !!};
@@ -250,7 +257,8 @@
                 var marker = new google.maps.Marker({
                     position: myLatLng,
                     map: map,
-                    title: 'Hello World!'
+                    label: 'You',
+                    title: 'You are here!'
                 });
                 marker.addListener('click', function() {
                     infowindow.open(map, marker);

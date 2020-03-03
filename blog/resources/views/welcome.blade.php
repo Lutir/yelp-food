@@ -221,8 +221,13 @@
       <script>
         $(document).ready(function(){
         if (navigator.geolocation) {
-                (navigator.geolocation.getCurrentPosition(getCoords));
-                {{-- navigator.geolocation.getCurrentPosition(showPosition); --}}
+                (navigator.geolocation.getCurrentPosition(function(position){
+                    lat = position.coords.latitude;
+                    lng = position.coords.longitude;
+                    $('.lat').val(lat);
+                    $('.lng').val(lng);
+                    console.log(lat, lng);
+                }));
             } else { 
                 x.innerHTML = "Geolocation is not supported by this browser.";
         }
@@ -306,42 +311,7 @@
             console.log(autocomplete);
         })
 
-        $('.get-button').click(function(){
-            let text = $('.item-search').val();
-            $.ajaxSetup(
-             {
-                 headers:
-                 {
-                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                 }
-             });
-         
-             $.ajax(
-             {
-                 type: "POST",
-                 url: '/find',
-                 data: {
-                     'text' : text
-                 },
-                 dataType: "json",
-                 success: function(data){
-                    window.location.replace("/find");
-                },
-                 error: function(jqXHR,testStatus,errorThrown){
-                     console.log(errorThrown);
-                 }
-             });
-        })
-
-        })
-        function getCoords(position){
-            lat = (position.coords.latitude)
-            $('.lat').val(lat);
-            lng = position.coords.longitude;
-            $('.lng').val(lng);
-
-            console.log(lat, lng);
-        }
+        });
       </script>
    </body>
 </html>

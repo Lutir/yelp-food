@@ -29,8 +29,6 @@ class MainController extends Controller
     public function findBusiness(Request $request){
         $client = new Client();
 
-        dd($request);
-
         $res = $client->request('GET', 'https://api.yelp.com/v3/businesses/search',[
             'headers' => [
                 'Authorization' => 'Bearer jgRVnIJ15A500fx2riRdGRCdoBKoE6f0PhR3IoXZWsIRtXk8CvxeA-F4uVp26HUNmkz5uDxUr81dWNAlHp5IdjlxO_5arZDE2eKYwc7_nZ2d-Trxq4hoJdCTebtNXnYx'
