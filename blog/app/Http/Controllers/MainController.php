@@ -28,14 +28,17 @@ class MainController extends Controller
 
     public function findBusiness(Request $request){
         $client = new Client();
+
+        dd($request);
+
         $res = $client->request('GET', 'https://api.yelp.com/v3/businesses/search',[
             'headers' => [
                 'Authorization' => 'Bearer jgRVnIJ15A500fx2riRdGRCdoBKoE6f0PhR3IoXZWsIRtXk8CvxeA-F4uVp26HUNmkz5uDxUr81dWNAlHp5IdjlxO_5arZDE2eKYwc7_nZ2d-Trxq4hoJdCTebtNXnYx'
             ],
             'query' => [
                 'term' => $request['text'],
-                'latitude' => '32.998315143326856',
-                'longitude' => '-96.77489266061392'
+                'latitude' => $request['lat'],
+                'longitude' => $request['lng']
             ]
         ]);
         $body = $res->getBody();
@@ -43,8 +46,8 @@ class MainController extends Controller
         
         $query = [
             'term' => $request['text'],
-            'latitude' => '32.998315143326856',
-            'longitude' => '-96.77489266061392'
+            'latitude' => $request['lat'],
+            'longitude' => $request['lng']
         ];
 
         return View::make('find')->with(['data' => $body->businesses, 'query'=> $query]);

@@ -119,14 +119,14 @@
    <body >
       <div class="uk-container main" >
 
-         <h1>
+         <h1 uk-scrollspy="cls: uk-animation-slide-bottom-small; repeat: true; delay: 50">
             Welcome to Food Dojo!
          </h1>
-         <p class="main-content">
+         <p uk-scrollspy="cls: uk-animation-slide-bottom-small; repeat: true; delay: 150" class="main-content">
             We help you find the best <span id="app"></span> in town!
          </p>
-         <a href="#modal-search" uk-toggle class="uk-button uk-button-default uk-button-large main-button">
-         Lets get started
+         <a uk-scrollspy="cls: uk-animation-slide-bottom-small; repeat: true; delay: 250" href="#modal-search" uk-toggle class="uk-button uk-button-default uk-button-large main-button">
+            Lets get started
          </a>
       </div>
       <div id="modal-search" class="uk-modal-full uk-modal" uk-modal>
@@ -135,21 +135,24 @@
             {{ Form::open(array('url' => 'find')) }}
 
             <div class="uk-container modal-body">
-               <div class="item-module">
-                  <span class="modal-content">I am looking for</span>
-                  <div class="uk-search uk-search-large">
+               <div class="item-module" >
+                  <span class="modal-content" uk-scrollspy="cls: uk-animation-slide-bottom-small; repeat: true; delay: 100">I am looking for</span>
+                  <div class="uk-search uk-search-large" uk-scrollspy="cls: uk-animation-slide-bottom-small; repeat: true; delay: 150">
                      <input class="uk-search-input item-search" name="text" type="search" placeholder="burgers, pizzas, skydiving..." >
                   </div>
                   <ul class="suggestions-items">
                   </ul>
                </div>
-               <div class="place-module">
-                  <span class="modal-content">Near</span>
-                  <div class="uk-search uk-search-large">
+               <div class="place-module" >
+                  <span class="modal-content" uk-scrollspy="cls: uk-animation-slide-bottom-small; repeat: true; delay: 200">Near</span>
+                  <div class="uk-search uk-search-large" uk-scrollspy="cls: uk-animation-slide-bottom-small; repeat: true; delay: 250">
                      <input id="autocomplete" class="uk-search-input place-search" type="text" placeholder="richardson, plano, frisco.." >
+                     <input type="text" name="lat" hidden="true" class="lat">
+                     <input type="text" name="lng" hidden="true" class="lng">
                   </div>
+
                </div>
-               <div class="search-module">
+               <div class="search-module" uk-scrollspy="cls: uk-animation-slide-bottom-small; repeat: true; delay: 300">
                   <button type="submit" class="uk-button uk-button-default uk-button-large search-button">
                   <span uk-icon="search"></span>
                   find places
@@ -159,49 +162,49 @@
 
                <hr>
                <div class="popular-module">
-                  <p class="modal-content">
+                  <p class="modal-content" uk-scrollspy="cls: uk-animation-slide-bottom-small; repeat: true; delay: 150">
                      Popular options near you
                   </p>
                   <div class="uk-container">
-                     <div class="popular-item">
+                     <div class="popular-item" uk-scrollspy="cls: uk-animation-slide-bottom-small; repeat: true; delay: 200">
                         <img class="uk-border-circle" src="https://image.freepik.com/free-vector/hamburger_53876-25481.jpg" width="150" height="150" alt="Border circle">
                         <p>Burgers</p>
                      </div>
-                     <div class="popular-item">
+                     <div class="popular-item" uk-scrollspy="cls: uk-animation-slide-bottom-small; repeat: true; delay: 200">
                         <img class="uk-border-circle" src="https://image.freepik.com/free-vector/three-taco-vectors_23-2147695634.jpg?1" width="150" height="150" alt="Border circle">
                         <p>Tacos</p>
                      </div>
-                     <div class="popular-item">
+                     <div class="popular-item" uk-scrollspy="cls: uk-animation-slide-bottom-small; repeat: true; delay: 200">
                         <img class="uk-border-circle" src="https://image.freepik.com/free-vector/colorful-round-tasty-pizza_1284-10219.jpg" width="150" height="150" alt="Border circle">
                         <p>Pizzas</p>
                      </div>
-                     <div class="popular-item">
+                     <div class="popular-item" uk-scrollspy="cls: uk-animation-slide-bottom-small; repeat: true; delay: 200">
                         <img class="uk-border-circle" src="https://image.freepik.com/free-vector/donut_53876-25491.jpg" width="150" height="150" alt="Border circle">
                         <p>Donuts</p>
                      </div>
-                     <div class="popular-item">
+                     <div class="popular-item" uk-scrollspy="cls: uk-animation-slide-bottom-small; repeat: true; delay: 200">
                         <img class="uk-border-circle" src="https://image.freepik.com/free-vector/breakfast-realistic-pancakes-top-view-image_1284-14472.jpg" width="150" height="150" alt="Border circle">
                         <p>Pancakes</p>
                      </div>
                   </div>
                   <div class="uk-container">
-                     <div class="popular-item">
+                     <div class="popular-item" uk-scrollspy="cls: uk-animation-slide-bottom-small; repeat: true; delay: 400">
                         <img class="uk-border-circle" src="https://image.freepik.com/free-vector/noodle-bowl-asia-food_52422-141.jpg" width="150" height="150" alt="Border circle">
                         <p>Ramen</p>
                      </div>
-                     <div class="popular-item">
+                     <div class="popular-item" uk-scrollspy="cls: uk-animation-slide-bottom-small; repeat: true; delay: 400">
                         <img class="uk-border-circle" src="https://image.freepik.com/free-vector/fries_53876-25480.jpg" width="150" height="150" alt="Border circle">
                         <p>Fries</p>
                      </div>
-                     <div class="popular-item">
+                     <div class="popular-item" uk-scrollspy="cls: uk-animation-slide-bottom-small; repeat: true; delay: 400">
                         <img class="uk-border-circle" src="https://image.freepik.com/free-vector/hot-dog-set_98292-429.jpg" width="150" height="150" alt="Border circle">
                         <p>Hotdogs</p>
                      </div>
-                     <div class="popular-item">
+                     <div class="popular-item" uk-scrollspy="cls: uk-animation-slide-bottom-small; repeat: true; delay: 400">
                         <img class="uk-border-circle" src="https://image.freepik.com/free-photo/indian-healthy-cuisine-chana-masala-served-with-tandoori-roti_55610-3169.jpg" width="150" height="150" alt="Border circle">
                         <p>Chole Bhature</p>
                      </div>
-                     <div class="popular-item">
+                     <div class="popular-item" uk-scrollspy="cls: uk-animation-slide-bottom-small; repeat: true; delay: 400">
                         <img class="uk-border-circle" src="https://image.freepik.com/free-vector/salami-sandwich-ingredients_98292-3568.jpg" width="150" height="150" alt="Border circle">
                         <p>Sandwitches</p>
                      </div>
@@ -217,9 +220,17 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/fontawesome.min.js" integrity="sha256-7zqZLiBDNbfN3W/5aEI1OX/5uvck9V0yhwKOA9Oe49M=" crossorigin="anonymous"></script>
       <script>
         $(document).ready(function(){
-            
+        if (navigator.geolocation) {
+                (navigator.geolocation.getCurrentPosition(getCoords));
+                {{-- navigator.geolocation.getCurrentPosition(showPosition); --}}
+            } else { 
+                x.innerHTML = "Geolocation is not supported by this browser.";
+        }
         var app = document.getElementById('app');
-         
+
+        let lat = "";
+        let lng = "";
+
          var typewriter = new Typewriter(app, {
              loop: true
          });
@@ -233,6 +244,13 @@
          });
          typewriter.start();
          
+
+         $('.search-button').click(function(){
+             if($('.lat').val() == "" || $('.lng').val() == ""){
+                 alert('Please enter location');
+                 return ;
+             }
+         })
          
          $('.item-search').keydown(function(){
              if(($(this).val()).length > 2){
@@ -308,9 +326,7 @@
                  },
                  dataType: "json",
                  success: function(data){
-                    localStorage.setItem('restaurants', data);
                     window.location.replace("/find");
-
                 },
                  error: function(jqXHR,testStatus,errorThrown){
                      console.log(errorThrown);
@@ -319,7 +335,14 @@
         })
 
         })
-         
+        function getCoords(position){
+            lat = (position.coords.latitude)
+            $('.lat').val(lat);
+            lng = position.coords.longitude;
+            $('.lng').val(lng);
+
+            console.log(lat, lng);
+        }
       </script>
    </body>
 </html>
