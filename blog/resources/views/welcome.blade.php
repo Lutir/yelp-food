@@ -116,6 +116,10 @@
              font-size: 24px;
              color: #fff;
          }
+
+         .popular-item:hover{
+             cursor: pointer;
+         }
       </style>
    </head>
    <body >
@@ -164,53 +168,62 @@
 
                <hr>
                <div class="popular-module">
+                {{ Form::open(array('url' => 'find', 'id'=>"popular-form")) }}
+
+                <input class="popular-item-search" name="text" hidden="true" type="text">
+                <input type="text" name="lat" hidden="true" class="lat">
+                <input type="text" name="lng" hidden="true" class="lng">
+
                   <p class="modal-content" uk-scrollspy="cls: uk-animation-slide-bottom-small; repeat: true; delay: 150">
                      Popular options near you
                   </p>
                   <div class="uk-container">
-                     <div class="popular-item" uk-scrollspy="cls: uk-animation-slide-bottom-small; repeat: true; delay: 200">
+                     <a class="popular-item" type="submit" data-item="burgers" uk-scrollspy="cls: uk-animation-slide-bottom-small; repeat: true; delay: 200">
                         <img class="uk-border-circle" src="https://image.freepik.com/free-vector/hamburger_53876-25481.jpg" width="150" height="150" alt="Border circle">
                         <p>Burgers</p>
-                     </div>
-                     <div class="popular-item" uk-scrollspy="cls: uk-animation-slide-bottom-small; repeat: true; delay: 200">
+                     </a>
+                     <a class="popular-item" type="submit" data-item="tacos" uk-scrollspy="cls: uk-animation-slide-bottom-small; repeat: true; delay: 200">
                         <img class="uk-border-circle" src="https://image.freepik.com/free-vector/three-taco-vectors_23-2147695634.jpg?1" width="150" height="150" alt="Border circle">
                         <p>Tacos</p>
-                     </div>
-                     <div class="popular-item" uk-scrollspy="cls: uk-animation-slide-bottom-small; repeat: true; delay: 200">
+                     </a>
+                     <a class="popular-item" type="submit" data-item="Pizzas" uk-scrollspy="cls: uk-animation-slide-bottom-small; repeat: true; delay: 200">
                         <img class="uk-border-circle" src="https://image.freepik.com/free-vector/colorful-round-tasty-pizza_1284-10219.jpg" width="150" height="150" alt="Border circle">
                         <p>Pizzas</p>
-                     </div>
-                     <div class="popular-item" uk-scrollspy="cls: uk-animation-slide-bottom-small; repeat: true; delay: 200">
+                     </a>
+                     <a class="popular-item" type="submit" data-item="Donuts" uk-scrollspy="cls: uk-animation-slide-bottom-small; repeat: true; delay: 200">
                         <img class="uk-border-circle" src="https://image.freepik.com/free-vector/donut_53876-25491.jpg" width="150" height="150" alt="Border circle">
                         <p>Donuts</p>
-                     </div>
-                     <div class="popular-item" uk-scrollspy="cls: uk-animation-slide-bottom-small; repeat: true; delay: 200">
+                     </a>
+                     <a class="popular-item" type="submit" data-item="Pancakes" uk-scrollspy="cls: uk-animation-slide-bottom-small; repeat: true; delay: 200">
                         <img class="uk-border-circle" src="https://image.freepik.com/free-vector/breakfast-realistic-pancakes-top-view-image_1284-14472.jpg" width="150" height="150" alt="Border circle">
                         <p>Pancakes</p>
-                     </div>
+                     </a>
                   </div>
                   <div class="uk-container">
-                     <div class="popular-item" uk-scrollspy="cls: uk-animation-slide-bottom-small; repeat: true; delay: 400">
+                     <a class="popular-item" type="submit" data-item="Ramen" uk-scrollspy="cls: uk-animation-slide-bottom-small; repeat: true; delay: 400">
                         <img class="uk-border-circle" src="https://image.freepik.com/free-vector/noodle-bowl-asia-food_52422-141.jpg" width="150" height="150" alt="Border circle">
                         <p>Ramen</p>
-                     </div>
-                     <div class="popular-item" uk-scrollspy="cls: uk-animation-slide-bottom-small; repeat: true; delay: 400">
+                     </a>
+                     <a class="popular-item" type="submit" data-item="Fries" uk-scrollspy="cls: uk-animation-slide-bottom-small; repeat: true; delay: 400">
                         <img class="uk-border-circle" src="https://image.freepik.com/free-vector/fries_53876-25480.jpg" width="150" height="150" alt="Border circle">
                         <p>Fries</p>
-                     </div>
-                     <div class="popular-item" uk-scrollspy="cls: uk-animation-slide-bottom-small; repeat: true; delay: 400">
+                     </a>
+                     <a class="popular-item" type="submit" data-item="Hotdogs" uk-scrollspy="cls: uk-animation-slide-bottom-small; repeat: true; delay: 400">
                         <img class="uk-border-circle" src="https://image.freepik.com/free-vector/hot-dog-set_98292-429.jpg" width="150" height="150" alt="Border circle">
                         <p>Hotdogs</p>
-                     </div>
-                     <div class="popular-item" uk-scrollspy="cls: uk-animation-slide-bottom-small; repeat: true; delay: 400">
+                     </a>
+                     <a class="popular-item" type="submit" data-item="Chole Bhature" uk-scrollspy="cls: uk-animation-slide-bottom-small; repeat: true; delay: 400">
                         <img class="uk-border-circle" src="https://image.freepik.com/free-photo/indian-healthy-cuisine-chana-masala-served-with-tandoori-roti_55610-3169.jpg" width="150" height="150" alt="Border circle">
                         <p>Chole Bhature</p>
-                     </div>
-                     <div class="popular-item" uk-scrollspy="cls: uk-animation-slide-bottom-small; repeat: true; delay: 400">
+                     </a>
+                     <a class="popular-item" type="submit" data-item="Sandwitches" uk-scrollspy="cls: uk-animation-slide-bottom-small; repeat: true; delay: 400">
                         <img class="uk-border-circle" src="https://image.freepik.com/free-vector/salami-sandwich-ingredients_98292-3568.jpg" width="150" height="150" alt="Border circle">
                         <p>Sandwitches</p>
-                     </div>
+                     </a>
                   </div>
+
+                {{ Form::close() }}
+
                </div>
             </div>
          </div>
@@ -262,6 +275,15 @@
              }
          })
          
+        $('.popular-item').click(function(){
+            console.log($(this).data('item'));
+
+            let text = $(this).data('item');
+            
+            $('.popular-item-search').val(text);
+            $('#popular-form').submit();
+            })
+
          $('.item-search').keydown(function(){
              if(($(this).val()).length > 2){
                  console.log($(this).val());
