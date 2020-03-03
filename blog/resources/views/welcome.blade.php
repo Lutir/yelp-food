@@ -132,27 +132,31 @@
       <div id="modal-search" class="uk-modal-full uk-modal" uk-modal>
          <div class="uk-modal-dialog uk-flex uk-flex-center" uk-height-viewport>
             <button class="uk-modal-close-full" type="button" uk-close></button>
+            {{ Form::open(array('url' => 'find')) }}
+
             <div class="uk-container modal-body">
                <div class="item-module">
                   <span class="modal-content">I am looking for</span>
-                  <form class="uk-search uk-search-large">
-                     <input class="uk-search-input item-search" type="search" placeholder="burgers, pizzas, skydiving..." >
-                  </form>
+                  <div class="uk-search uk-search-large">
+                     <input class="uk-search-input item-search" name="text" type="search" placeholder="burgers, pizzas, skydiving..." >
+                  </div>
                   <ul class="suggestions-items">
                   </ul>
                </div>
                <div class="place-module">
                   <span class="modal-content">Near</span>
-                  <form class="uk-search uk-search-large">
+                  <div class="uk-search uk-search-large">
                      <input id="autocomplete" class="uk-search-input place-search" type="text" placeholder="richardson, plano, frisco.." >
-                  </form>
+                  </div>
                </div>
                <div class="search-module">
-                  <button class="uk-button uk-button-default uk-button-large search-button">
+                  <button type="submit" class="uk-button uk-button-default uk-button-large search-button">
                   <span uk-icon="search"></span>
                   find places
                   </button>
                </div>
+               {{ Form::close() }}
+
                <hr>
                <div class="popular-module">
                   <p class="modal-content">
@@ -283,6 +287,35 @@
         google.maps.event.addListener(autocomplete, 'place_changed', function(){
             var place = autocomplete.getPlace();
             console.log(autocomplete);
+        })
+
+        $('.get-button').click(function(){
+            let text = $('.item-search').val();
+            $.ajaxSetup(
+             {
+                 headers:
+                 {
+                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                 }
+             });
+         
+             $.ajax(
+             {
+                 type: "POST",
+                 url: '/find',
+                 data: {
+                     'text' : text
+                 },
+                 dataType: "json",
+                 success: function(data){
+                    localStorage.setItem('restaurants', data);
+                    window.location.replace("/find");
+
+                },
+                 error: function(jqXHR,testStatus,errorThrown){
+                     console.log(errorThrown);
+                 }
+             });
         })
 
         })
