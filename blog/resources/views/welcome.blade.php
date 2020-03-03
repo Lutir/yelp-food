@@ -247,8 +247,7 @@
 
          $('.search-button').click(function(){
              if($('.lat').val() == "" || $('.lng').val() == ""){
-                 alert('Please enter location');
-                 return ;
+                 navigator.geolocation.getCurrentPosition(getCoords);
              }
          })
          
