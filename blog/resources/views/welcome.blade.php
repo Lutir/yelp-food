@@ -34,7 +34,9 @@
          color: rgba(244, 157, 110, 1);
          }
          html, body {
+         background: url('https://trello-attachments.s3.amazonaws.com/5d0f692e1eeeef56c89583df/5e5eaf76bac7c23270ccf43a/677b08abf483dca8e8fd66d0198c6efc/template_(1).png');
          background-color:  rgba(224, 64, 56, 1);
+         background-size: cover;
          color: #636b6f;
          font-family: 'Source Sans Pro';
          font-weight: 200;
@@ -219,18 +221,21 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/TypewriterJS/1.0.0/typewriter.min.js" integrity="sha256-0GG30XmRuHKTD54lbTLEd01reloWjlnefU09UzmFpzc=" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/fontawesome.min.js" integrity="sha256-7zqZLiBDNbfN3W/5aEI1OX/5uvck9V0yhwKOA9Oe49M=" crossorigin="anonymous"></script>
       <script>
-        $(document).ready(function(){
-        if (navigator.geolocation) {
+      if (navigator.geolocation) {
                 (navigator.geolocation.getCurrentPosition(function(position){
-                    lat = position.coords.latitude;
-                    lng = position.coords.longitude;
+                    let lat = position.coords.latitude;
+                    let lng = position.coords.longitude;
                     $('.lat').val(lat);
                     $('.lng').val(lng);
                     console.log(lat, lng);
                 }));
-            } else { 
+            } 
+            else { 
                 x.innerHTML = "Geolocation is not supported by this browser.";
         }
+
+        $(document).ready(function(){
+        
         var app = document.getElementById('app');
 
         let lat = "";
@@ -253,6 +258,7 @@
          $('.search-button').click(function(){
              if($('.lat').val() == "" || $('.lng').val() == ""){
                  navigator.geolocation.getCurrentPosition(getCoords);
+                 alert('location');
              }
          })
          
@@ -305,7 +311,7 @@
 
         var input = document.getElementById('autocomplete');
         var autocomplete = new google.maps.places.Autocomplete(input,{types: ['(cities)']});
-        console.log(autocomplete);
+
         google.maps.event.addListener(autocomplete, 'place_changed', function(){
             var place = autocomplete.getPlace();
             console.log(autocomplete);
