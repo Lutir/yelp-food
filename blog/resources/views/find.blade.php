@@ -34,7 +34,7 @@
          color: rgba(244, 157, 110, 1);
          }
          html, body {
-         background: rgba(244, 157, 110, 1);
+         background: #8E4162;
          color: #636b6f;
          font-family: 'Source Sans Pro';
          font-weight: 200;
@@ -111,7 +111,7 @@
         <h1>
             Here are some of the best {{ $query['term'] }} options near you
         </h1>
-        <hr>
+        {{-- <hr>
         
             <nav class="uk-navbar-container" uk-navbar="boundary-align: true; align: center;">
             <div class="uk-navbar-left">
@@ -147,9 +147,9 @@
 
     
 
-</nav>
+</nav> --}}
 
-        <hr>
+        {{-- <hr> --}}
 
 
         <div class="uk-child-width-1-3@s uk-text-center uk-grid-match" uk-grid>
@@ -213,7 +213,7 @@
     </div>
         <hr>
         <h1>
-            Still confused, Check out the map view to find your outlet!
+            Still confused? Check out the map view to find your outlet!
         </h1>
         <div id="map"></div>
 
@@ -234,7 +234,7 @@
             console.log(jobs);
             
             $('.best-match-sort').click(function(){
-                
+
             })
         })
         function initMap() {
