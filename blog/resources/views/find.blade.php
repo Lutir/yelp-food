@@ -59,7 +59,7 @@
             text-overflow: ellipsis; 
            }
 
-         .uk-card, h3{
+        .uk-card, h3{
             font-family: 'Nunito';
              
          }
@@ -103,6 +103,11 @@
          #map {
             height: 500px;
             margin-bottom: 10%;
+        }
+
+        .footer{
+            background: #fff;
+            padding: 0px;
         }
       </style>
    </head>
@@ -200,9 +205,16 @@
                             @endif
                         @endforeach
                         </p>
+
+                        <small>
+                            <span uk-icon="phone"></span>
+
+                        {{ $item->display_phone }}
+                        </small>
                     </div>
                     <div class="uk-card-footer">
                         <p>
+                        <span uk-icon="location"></span>
                             {{ ($item->location->address1) }}, {{ $item->location->city }}, {{ $item->location->state }}, {{ $item->location->zip_code }} 
                         </p>
 
@@ -217,10 +229,25 @@
         </h1>
         <div id="map"></div>
 
+        
 
     </div>
       
-      
+      <div class="uk-container uk-padding footer" >
+                            <div class="uk-card uk-card-body blue">
+                                    <h3 class=" uk-align-left uk-margin-remove-bottom">Designed and developed by Ritul</h3>
+                                    <small class="uk-card-title uk-align-right uk-margin-remove-bottom">
+                                            <ul class="uk-iconnav">
+                                                    <li><a href="https://www.facebook.com/ritul.jain.9" target="_blank" class="facebook" uk-icon="icon: facebook; ratio: 1.5;"></a></li>
+                                                    <li><a href="https://www.linkedin.com/in/ritul-jain/" target="_blank" class="linkedin" uk-icon="icon: linkedin; ratio: 1.5;"></a></li>
+                                                    <li><a href="https://www.instagram.com/lutir003/" target="_blank" class="instagram" uk-icon="icon: instagram; ratio: 1.5;"></a></li>
+                                                    <li><a href="https://github.com/Lutir" target="_blank" class="github" uk-icon="icon: github; ratio: 1.5;"></a></li>
+                                                </ul>
+                                    </small>
+
+                            </div>
+
+                    </div>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.3.2/js/uikit-core.min.js" integrity="sha256-pokDnmeZPcUG8ixsBFK9UJTBZUljxfe6c/wKfL9TlMI=" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.3.2/js/uikit-icons.min.js" integrity="sha256-y6lYHosw5EeTk2I2TwmbjQSrnLum1OhYpqUXjBIGdKw=" crossorigin="anonymous"></script>

@@ -120,6 +120,10 @@
          .popular-item:hover{
              cursor: pointer;
          }
+
+         .pac-container {
+            z-index: 10000 !important;
+         }
       </style>
    </head>
    <body >
@@ -134,13 +138,18 @@
          <a uk-scrollspy="cls: uk-animation-slide-bottom-small; repeat: true; delay: 250" href="#modal-search" uk-toggle class="uk-button uk-button-default uk-button-large main-button">
             Lets get started
          </a>
+
       </div>
       <div id="modal-search" class="uk-modal-full uk-modal" uk-modal>
          <div class="uk-modal-dialog uk-flex uk-flex-center" uk-height-viewport>
             <button class="uk-modal-close-full" type="button" uk-close></button>
-            {{ Form::open(array('url' => 'find')) }}
+
 
             <div class="uk-container modal-body">
+                                     
+
+            {{ Form::open(array('url' => 'find')) }}
+
                <div class="item-module" >
                   <span class="modal-content" uk-scrollspy="cls: uk-animation-slide-bottom-small; repeat: true; delay: 100">I am looking for</span>
                   <div class="uk-search uk-search-large" uk-scrollspy="cls: uk-animation-slide-bottom-small; repeat: true; delay: 150">
@@ -149,10 +158,12 @@
                   <ul class="suggestions-items">
                   </ul>
                </div>
+
                <div class="place-module" >
                   <span class="modal-content" uk-scrollspy="cls: uk-animation-slide-bottom-small; repeat: true; delay: 200">Near</span>
                   <div class="uk-search uk-search-large" uk-scrollspy="cls: uk-animation-slide-bottom-small; repeat: true; delay: 250">
-                     <input id="autocomplete" class="uk-search-input place-search" type="text" placeholder="richardson, plano, frisco.." >
+                    <input id="searchInput" class="uk-search-input place-search" type="text" placeholder="richardson, plano, frisco.." >
+
                      <input type="text" name="lat" hidden="true" class="lat">
                      <input type="text" name="lng" hidden="true" class="lng">
                   </div>
@@ -228,12 +239,26 @@
             </div>
          </div>
       </div>
+
+
+
+      
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.3.2/js/uikit-core.min.js" integrity="sha256-pokDnmeZPcUG8ixsBFK9UJTBZUljxfe6c/wKfL9TlMI=" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.3.2/js/uikit-icons.min.js" integrity="sha256-y6lYHosw5EeTk2I2TwmbjQSrnLum1OhYpqUXjBIGdKw=" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/TypewriterJS/1.0.0/typewriter.min.js" integrity="sha256-0GG30XmRuHKTD54lbTLEd01reloWjlnefU09UzmFpzc=" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/js/fontawesome.min.js" integrity="sha256-7zqZLiBDNbfN3W/5aEI1OX/5uvck9V0yhwKOA9Oe49M=" crossorigin="anonymous"></script>
       <script>
+
+         var input = document.getElementById('searchInput');
+        var autocomplete = new google.maps.places.Autocomplete(input);
+        google.maps.event.addListener(autocomplete, 'place_changed', function(){
+            var place = autocomplete.getPlace();
+            {{-- console.log(place); --}}
+            $('.lat').val(place.geometry.location.lat());
+            $('.lng').val(place.geometry.location.lng());
+        })
+
       if (navigator.geolocation) {
                 (navigator.geolocation.getCurrentPosition(function(position){
                     let lat = position.coords.latitude;
@@ -331,13 +356,13 @@
          });
          
 
-        var input = document.getElementById('autocomplete');
+        {{-- var input = document.getElementById('autocomplete');
         var autocomplete = new google.maps.places.Autocomplete(input,{types: ['(cities)']});
 
-        google.maps.event.addListener(autocomplete, 'place_changed', function(){
+        autocomplete.addListener('place_changed', function(){
             var place = autocomplete.getPlace();
-            console.log(autocomplete);
-        })
+            console.log(place);
+        }) --}}
 
         });
       </script>
