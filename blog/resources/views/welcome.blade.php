@@ -10,10 +10,121 @@
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/fontawesome.min.css" integrity="sha256-mM6GZq066j2vkC2ojeFbLCcjVzpsrzyMVUnRnEQ5lGw=" crossorigin="anonymous" />
       <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,900&display=swap" rel="stylesheet">
       <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkfy1qoNObvO4CHbSL-7748kTJ95Kv2yc&libraries=places"></script>
-<link rel="stylesheet" href="{{ URL::asset('css/test.css') }}">
 
       <!-- Styles -->
-      
+      <style>
+         .red
+         {
+         color: rgba(224, 64, 56, 1);
+         }
+         .cadet
+         {
+         color: rgba(44, 44, 84, 1);
+         }
+         .plat
+         {
+         color: rgba(232, 232, 232, 1);
+         }
+         .peach
+         {
+         color: rgba(245, 214, 186, 1);
+         }
+         .sandy
+         {
+         color: rgba(244, 157, 110, 1);
+         }
+         html, body {
+         background: url('https://trello-attachments.s3.amazonaws.com/5d0f692e1eeeef56c89583df/5e5eaf76bac7c23270ccf43a/677b08abf483dca8e8fd66d0198c6efc/template_(1).png');
+         background-color:  rgba(224, 64, 56, 1);
+         background-size: cover;
+         color: #636b6f;
+         font-family: 'Source Sans Pro';
+         font-weight: 200;
+         margin: 0;
+         }
+         h1, h2, .modal-content{
+         font-family: 'Source Sans Pro';
+         font-weight: 900;
+         font-size: 72px;
+         color: #fff;
+         }
+         .modal-content{
+         font-size: 48px;
+         }
+         .main{
+         margin-top: 15%;
+         margin-left: 10%;
+         }
+         .main-content{
+         font-family: 'Source Sans Pro';
+         color: white;
+         font-weight: 400;
+         font-size: 40px;
+         padding-bottom: 25px;
+         }
+         .main-button, .search-button{
+         border: 5px solid white;
+         color: #fff;
+         font-size: 20px;
+         }
+         .main-button:hover, .search-button:hover{
+         background: #fff;
+         color: rgba(224, 64, 56, 1);
+         border: 5px solid white;
+         }
+         .search-button:hover{
+         color: rgba(44, 44, 84, 1);
+         }
+         #modal-search, .uk-modal-dialog, .uk-modal-close-full {
+         background: rgba(44, 44, 84, 1) !important;
+         }
+         .modal-body{
+         padding-top:100px;
+         }
+         .item-search, .place-search{
+         padding-bottom: 25px;
+         padding-left: 20px;
+         }
+         .suggestions-items{
+         list-style-type: none;
+         padding: 0px 10px;
+         font-size: 24px;
+         color: #F49D6E;
+         position: absolute;
+         z-index: 100;
+         left: 45%;
+         background: #fff;
+         width: 75%;
+         }
+         .suggestion{
+         padding: 5px 10px;
+         }
+         .suggestion:hover{
+         cursor: pointer;
+         font-weight: bold;
+         }
+         .search-module{
+         padding: 20px 0px 40px 0px;
+         }
+         .popular-item{
+         display: inline-block;
+         margin: 20px;
+         }
+
+         .popular-item p{
+             text-align: center;
+             font-size: 24px;
+             color: #fff;
+         }
+
+         .popular-item:hover{
+             cursor: pointer;
+         }
+
+         .pac-container {
+            z-index: 10000 !important;
+         }
+      </style>
    </head>
    <body >
       <div class="uk-container main" >
@@ -130,7 +241,7 @@
       </div>
 
 
-
+    
       
       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.3.2/js/uikit-core.min.js" integrity="sha256-pokDnmeZPcUG8ixsBFK9UJTBZUljxfe6c/wKfL9TlMI=" crossorigin="anonymous"></script>
