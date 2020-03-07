@@ -4,7 +4,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta id="token" name="csrf-token" content="{{ csrf_token() }}">
-      <title>Food Dojo</title>
+      <title>Food Dojo | Home</title>
       <!-- Fonts -->
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.3.2/css/uikit.min.css" integrity="sha256-p54YJgZLIbKdD9CCokvwnGmZR3aQUvJhrbLibudN9sk=" crossorigin="anonymous" />
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/fontawesome.min.css" integrity="sha256-mM6GZq066j2vkC2ojeFbLCcjVzpsrzyMVUnRnEQ5lGw=" crossorigin="anonymous" />
@@ -148,7 +148,7 @@
             <div class="uk-container modal-body">
                                      
 
-            {{ Form::open(array('url' => 'find')) }}
+            {{ Form::open(array('url' => 'results')) }}
 
                <div class="item-module" >
                   <span class="modal-content" uk-scrollspy="cls: uk-animation-slide-bottom-small; repeat: true; delay: 100">I am looking for</span>
@@ -179,7 +179,7 @@
 
                <hr>
                <div class="popular-module">
-                {{ Form::open(array('url' => 'find', 'id'=>"popular-form")) }}
+                {{ Form::open(array('url' => 'results', 'id'=>"popular-form")) }}
 
                 <input class="popular-item-search" name="text" hidden="true" type="text">
                 <input type="text" name="lat" hidden="true" class="lat">
@@ -301,7 +301,6 @@
          })
          
         $('.popular-item').click(function(){
-            console.log($(this).data('item'));
 
             let text = $(this).data('item');
             

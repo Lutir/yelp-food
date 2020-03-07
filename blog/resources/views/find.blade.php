@@ -4,7 +4,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <meta id="token" name="csrf-token" content="{{ csrf_token() }}">
-      <title>Food Dojo</title>
+      <title>Food Dojo | Results</title>
       <!-- Fonts -->
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.3.2/css/uikit.min.css" integrity="sha256-p54YJgZLIbKdD9CCokvwnGmZR3aQUvJhrbLibudN9sk=" crossorigin="anonymous" />
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/fontawesome.min.css" integrity="sha256-mM6GZq066j2vkC2ojeFbLCcjVzpsrzyMVUnRnEQ5lGw=" crossorigin="anonymous" />
@@ -70,16 +70,24 @@
             text-overflow: ellipsis;
         }
          .sort-label{
-             padding: 10px 25px;
+             padding: 10px 25px !important;
              margin: 5px;
+             min-height: auto !important;
              border-radius: 200px;
              border: 3px solid #88CCF1;
          }
-
+         
+         .sl-active{
+             background: #88CCF1;
+             font-weight:500;
+             color: #fff !important;
+             transition: all 0.25s ease-out;
+         }
+         
          .sort-label:hover{
              background: #88CCF1;
              font-weight:500;
-             color: #fff;
+             color: #fff !important;
              transition: all 0.25s ease-out;
          }
 
@@ -104,7 +112,13 @@
             height: 500px;
             margin-bottom: 10%;
         }
-
+        .home-head a{
+            font-size: 20px !important;
+            color: #fff !important;
+        }
+        .home-head a span{
+            padding: 0px 5px;
+        }
         .footer{
             background: #fff;
             padding: 0px;
@@ -112,11 +126,26 @@
       </style>
    </head>
    <body>
+   <div class="uk-position-relative">
+    <img src="#" alt="">
+    <div class="uk-position-top">
+        <nav class="uk-navbar-container uk-navbar-transparent" uk-navbar>
+            <div class="uk-navbar-left">
+                <ul class="uk-navbar-nav">
+                    <li class="uk-active home-head"><a href="/">
+                        <span uk-icon="home" class="home-head-icon"></span>
+                        <span class="home-head-text"> Home</span>
+                    </a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</div>
     <div class="uk-container main">
         <h1>
             Here are some of the best {{ $query['term'] }} options near you
         </h1>
-        {{-- <hr>
+        <hr>
         
             <nav class="uk-navbar-container" uk-navbar="boundary-align: true; align: center;">
             <div class="uk-navbar-left">
@@ -127,34 +156,56 @@
         </ul>
     </div>
     <div class="uk-navbar-center">
+        {{ Form::open(array('url' => 'sortResults', 'id' => 'sortResultsForm')) }}
+
+        <input name="query" type="text" hidden="true" value="{{ json_encode($query) }}">
+        <input name="type" type="text" hidden="true" class="type">
 
         <ul class="uk-navbar-nav">
             <li class="best-match-sort">
-                <span class="sort-label">
+                @if($sort_param == "best_match")
+                    <a type="submit" class="sort-label sl-active" data-sort="best_match">
+                        Best Match
+                    </a>
+                @else
+                    <a type="submit" class="sort-label" data-sort="best_match">
                     Best Match
-                </span>
+                    </a>
+                @endif
             </li>
             <li class="distance-sort">
-                <span class="sort-label">
-                    Distance
-                </span>
-                
+                @if($sort_param == "distance")
+                    <a type="submit" class="sort-label sl-active" data-sort="distance">
+                        Distance
+                    </a>
+                @else
+                    <a type="submit" class="sort-label " data-sort="distance">
+                        Distance
+                    </a>
+                @endif
             </li>
             <li class="rating-sort">
-                <span class="sort-label">
-                    Ratings
-                </span>
-                
+                @if($sort_param == "rating")
+                    <a type="submit" class="sort-label sl-active" data-sort="rating">
+                        Ratings
+                    </a>
+                @else
+                    <a type="submit" class="sort-label" data-sort="rating">
+                        Ratings
+                    </a>
+                @endif
             </li>
         </ul>
+
+        {{ Form::close() }}
 
     </div>
 
     
 
-</nav> --}}
+</nav>
 
-        {{-- <hr> --}}
+        <hr>
 
 
         <div class="uk-child-width-1-3@s uk-text-center uk-grid-match" uk-grid>
@@ -256,12 +307,21 @@
         </script>
       <script>
         $(document).ready(function(){
+            $('.home-head-text').hide();
+            $('.home-head-icon').hover(function(){
+                $('.home-head-text').show('slow');
+            },
+            function(){
+                $('.home-head-text').hide('slow');
+            });
+
 
             let jobs = {!! json_encode($query) !!};
             console.log(jobs);
             
-            $('.best-match-sort').click(function(){
-
+            $('.sort-label').click(function(){
+                $('.type').val($(this).data('sort'));
+                $('#sortResultsForm').submit();
             })
         })
         function initMap() {

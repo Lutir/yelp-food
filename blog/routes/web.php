@@ -12,7 +12,9 @@
 */
 
 Route::post('/autocomplete', 'MainController@makeRequest');
-Route::post('/find', 'MainController@findBusiness');
+Route::post('/results', 'MainController@findBusiness');
+Route::post('/sortResults', 'MainController@sortBusiness');
+
 
 Route::get('/', function() {
     return view('welcome');
