@@ -50,7 +50,6 @@ class MainController extends Controller
         ];
 
         $sort_param = 'best_match';
-
         return View::make('find')->with(['data' => $body->businesses, 'query'=> $query, 'sort_param' => $sort_param]);
 
     }

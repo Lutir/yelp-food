@@ -126,8 +126,6 @@
       </style>
    </head>
    <body>
-   <div class="uk-position-relative">
-    <img src="#" alt="">
     <div class="uk-position-top">
         <nav class="uk-navbar-container uk-navbar-transparent" uk-navbar>
             <div class="uk-navbar-left">
@@ -140,7 +138,6 @@
             </div>
         </nav>
     </div>
-</div>
     <div class="uk-container main">
         <h1>
             Here are some of the best {{ $query['term'] }} options near you
@@ -256,13 +253,22 @@
                             @endif
                         @endforeach
                         </p>
+                        
+                            <p>
+                                <small>
+                                    <span uk-icon="phone"></span>
+                                    @if($item->display_phone == "")
+                                        Not Available
+                                    @else    
+                                    {{ $item->display_phone }}
+                                    @endif
+                                </small>
+                            </p>
 
-                        <small>
-                            <span uk-icon="phone"></span>
-
-                        {{ $item->display_phone }}
-                        </small>
-                    </div>
+                            
+                        </div>
+                        
+                        
                     <div class="uk-card-footer">
                         <p>
                         <span uk-icon="location"></span>
